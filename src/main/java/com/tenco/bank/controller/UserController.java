@@ -16,7 +16,7 @@ import com.tenco.bank.service.UserService;
 public class UserController {
 
 	private UserService userService;
-	@Autowired
+	@Autowired // 노란색 경고는 사용할 필요 없음 - 가독성 위해서 선언해도 된다.
 	public UserController(UserService service) {
 		this.userService = service;
 	}

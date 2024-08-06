@@ -18,13 +18,13 @@ public class GlobalControllerAdvice {
 	 * 로깅 처리 - 동기적 방식(System.out.println), @slf4j 라이브러리(비동기 로딩 처리)
 	 */
 	
-//	@ExceptionHandler(Exception.class)
-//	public void exception(Exception e) {
-//		System.out.println("------------------------");
-//		System.out.println(e.getClass().getName()); // 어떤 예외클래스 발생했는지 찍어보기
-//		System.out.println(e.getMessage()); // 발생한 예외클래스 로깅처리
-//		System.out.println("------------------------");
-//	}
+	@ExceptionHandler(Exception.class)
+	public void exception(Exception e) {
+		System.out.println("------------------------");
+		System.out.println(e.getClass().getName()); // 어떤 예외클래스 발생했는지 찍어보기
+		System.out.println(e.getMessage()); // 발생한 예외클래스 로깅처리
+		System.out.println("------------------------");
+	}
 	
 	/**
 	 * Data로 예외를 내려주는 방법

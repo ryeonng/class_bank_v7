@@ -15,15 +15,15 @@ import com.tenco.bank.repository.model.User;
 @Service // 제어의 역전 : IoC의 대상이 된다. (싱글톤으로 관리 됨)
 public class UserService {
 	
-	@Autowired 
 	private UserRepository userRepository;
 	
 	
 	// DI - 의존 주입 (Dependency Injection)
 	// ↓↓↓ @Autowired 어노테이션으로 대체 가능하다 ↓↓↓
-//	public UserService(UserRepository userRepository) {
-//		this.userRepository = userRepository;
-//	}
+	@Autowired
+	public UserService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 	
 	
 	
