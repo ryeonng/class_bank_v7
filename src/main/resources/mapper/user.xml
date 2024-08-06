@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tenco.bank.repository.interfaces.UserRepository">
+
+	<!-- 반드시 세미콜론을 제거해야 한다. -->
+	
+	<!-- 인터페이스를 xml파일로 구현한다. -->
+	<!-- id는 매칭되어 있는 인터페이스의 메서드명과 같아야 한다. -->
+	<insert id="insert">
+		insert into user_tb(username, password, fullname, created_at) <!-- 표기법 차이 잘 보기! -->
+		values( #{username}, #{password}, #{fullname}, #{createdAt} ) <!-- 끝에 세미콜론 xx -->
+	</insert>
+
+	<update id="updateById">
+		update user_tb set username = #{username},
+						   password = #{password},
+						   fullname = #{fullname},
+						   where id = #{id}
+	</update>
+
+	<delete id="deleteById">
+		delete from user_tb where id = #{id}
+	</delete>
+
+	<!-- 단일행 결과집합 -->
+	<select id="findById" resultType="com.tenco.bank.repository.model.User">
+		select * from user_tb where id = #{id}
+	</select>
+	
+	<!-- 다중행 결과집합 -->
+	<select id="findAll" resultType="com.tenco.bank.repository.model.User">
+		select * from user_tb
+	</select>
+
+</mapper>
