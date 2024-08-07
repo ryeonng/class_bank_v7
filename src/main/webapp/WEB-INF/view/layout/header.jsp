@@ -5,7 +5,7 @@
 <title>myBank</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="/css/common.css">
 <link rel="icon" href="/ko.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
@@ -21,7 +21,6 @@
 				<h1>My Bank</h1>
 				<p>마이바이티스를 활용한 스프링 부트 앱 만들어보기</p>
 			</div>
-
 
 
 			<nav class="navbar navbar-expand-sm bg-dark navbar-dark">

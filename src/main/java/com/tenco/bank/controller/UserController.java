@@ -41,7 +41,7 @@ public class UserController {
 	 */
 	@PostMapping("/sign-up")
 	public String signUpProc(SignUpDTO dto) { // dto와 매핑
-		
+		System.out.println("test : " + dto.toString());
 		// * controller에서 일반적인 코드 작업
 		// 1. 인증 검사 (여기서는 인증검사 불필요 - 회원가입에는 로그인 유무가 필요없다.)
 		
