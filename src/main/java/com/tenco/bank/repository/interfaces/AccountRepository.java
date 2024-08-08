@@ -21,4 +21,6 @@ public interface AccountRepository {
 	public List<Account> findByUserId(@Param("userId") Integer principalId); // 유저 아이디로 조회 시 몇 개의 계좌가 있는지 조회
 	// account id 값으로 계좌 정보 조회하는 기능 필요
 	public Account findByNumber(@Param("number") String id);
+
+	// 코드 추가 예정
 }

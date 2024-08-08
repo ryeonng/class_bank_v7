@@ -12,7 +12,7 @@
 		update account_tb set number = #{number},
 							  password = #{password},
 							  balance = #{balance},
-							  user_id = #{userId},
+							  user_id = #{userId}
 							  where id = #{id}
 	</update>
 	

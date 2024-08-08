@@ -16,7 +16,7 @@
 		</div>
 		<div class="form-group">
 			<label for="pwd">Password:</label>
-			<input type="password" class="form-control" placeholder="Enter password" id="pwd" name="password" value="asd1234">
+			<input type="password" class="form-control" placeholder="Enter password" id="pwd" name="password" value="1234">
 		</div>
 		<button type="submit" class="btn btn-primary">로그인</button>
 	</form>

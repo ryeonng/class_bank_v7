@@ -52,7 +52,7 @@ public class GlobalControllerAdvice {
 		StringBuffer sb = new StringBuffer();
 		sb.append(" <script>");
 		sb.append(" alert('"+ e.getMessage()  +"');");
-		sb.append(" window.history.back();");
+		sb.append(" location.href='/user/sign-in';"); // 인증되지 않은 사용자 -> 로그인 화면으로 이동시킴
 		sb.append(" </script>");
 		return sb.toString();
 	}
