@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tenco.bank.dto.DepositDTO;
 import com.tenco.bank.dto.SaveDTO;
 import com.tenco.bank.dto.WithdrawalDTO;
 import com.tenco.bank.handler.exception.DataDeliveryException;
@@ -127,6 +128,12 @@ public class AccountController {
 		return "account/withdrawal";
 	}
 
+	/**
+	 * 출금 기능 요청
+	 * 
+	 * @param dto
+	 * @return
+	 */
 	@PostMapping("/withdrawal")
 	public String withdrawalProc(WithdrawalDTO dto) {
 
@@ -137,25 +144,72 @@ public class AccountController {
 		}
 
 		// 유효성 검사 (직접 자바 코드를 통해 개발했었지만) -> 스프링부트에서 제공하는 유효성 검사 라이브러리 @Valid 존재
-		if(dto.getAmount() == null) {
+		if (dto.getAmount() == null) {
 			throw new DataDeliveryException(Define.ENTER_YOUR_BALANCE, HttpStatus.BAD_REQUEST);
 		}
-		
-		if(dto.getAmount().longValue() <= 0) {
+
+		if (dto.getAmount().longValue() <= 0) {
 			throw new DataDeliveryException(Define.W_BALANCE_VALUE, HttpStatus.BAD_REQUEST);
 		}
-		
-		if(dto.getWAccountNumber() == null) {
+
+		if (dto.getWAccountNumber() == null) {
 			throw new DataDeliveryException(Define.ENTER_YOUR_ACCOUNT_NUMBER, HttpStatus.BAD_REQUEST);
 		}
-		
-		if(dto.getWAccountPassword() == null || dto.getWAccountPassword().isEmpty()) {
+
+		if (dto.getWAccountPassword() == null || dto.getWAccountPassword().isEmpty()) {
 			throw new DataDeliveryException(Define.ENTER_YOUR_PASSWORD, HttpStatus.BAD_REQUEST);
 		}
-		
+
 		accountService.updateAccountWithdraw(dto, principal.getId());
-		
+
 		return "redirect:/account/list";
 	}
 
+	/**
+	 * 입금 페이지 요청
+	 * 
+	 * @return deposit.jsp
+	 */
+	@GetMapping("/deposit")
+	public String depositPage() {
+		// 인증검사
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		if (principal == null) {
+			throw new UnAuthorizedException(Define.NOT_AN_AUTHENTICATED_USER, HttpStatus.UNAUTHORIZED);
+		}
+		return "account/deposit";
+	}
+
+	/**
+	 * 입금 기능 요청
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	@PostMapping("/deposit")
+	public String depositProc(DepositDTO dto) {
+
+		// 1. 인증검사
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		if (principal == null) {
+			throw new UnAuthorizedException(Define.NOT_AN_AUTHENTICATED_USER, HttpStatus.UNAUTHORIZED);
+		}
+
+		// 유효성 검사
+		if (dto.getAmount() == null) {
+			throw new DataDeliveryException(Define.ENTER_YOUR_BALANCE, HttpStatus.BAD_REQUEST);
+		}
+		
+		if (dto.getAmount().longValue() <= 0) {
+			throw new DataDeliveryException(Define.W_BALANCE_VALUE, HttpStatus.BAD_REQUEST);
+		}
+		
+		if (dto.getDAccountNumber() == null) {
+			throw new DataDeliveryException(Define.ENTER_YOUR_ACCOUNT_NUMBER, HttpStatus.BAD_REQUEST);
+		}
+		
+		accountService.updateAccountDeposit(dto, principal.getId());
+		
+		return "redirect:/account/list";
+	}
 }
