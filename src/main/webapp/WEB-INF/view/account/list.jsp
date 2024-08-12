@@ -24,7 +24,7 @@
 				<tbody>
 					<c:forEach var="account" items="${accountList}"> <%-- accountList 만큼 반복을 돌려준다. --%>
 						<tr>
-							<td>${account.number}</td>
+							<td><a href="/account/detail/${account.id}?type=all">${account.number}</a></td>
 							<td>${account.balance}</td>
 						</tr>
 					</c:forEach>
